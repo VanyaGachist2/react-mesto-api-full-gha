@@ -45,5 +45,5 @@ class Auth {
 }
 
 export const authApi = new Auth({
-  url: "https://api.vanyagachist.nomoredomainsmonster.ru"
+  url: "https://auth.nomoreparties.co"
 });
