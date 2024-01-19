@@ -90,9 +90,8 @@ class Api {
 }
 
 export const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-77',
+  url: 'https://api.vanyagachist.nomoredomainsmonster.ru',
   headers: {
-    authorization: '1aa649c6-8ab3-4b24-b422-5f9b6b86982a',
     'Content-Type': 'application/json'
   }
 })
