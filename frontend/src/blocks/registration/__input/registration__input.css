@@ -1,0 +1,17 @@
+.registration__input {
+  margin: 0 0 30px 0;
+  max-width: 100%;
+  color: #CCC;
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-bottom: 13px;
+  border-bottom: 2px solid #CCC;
+}
+
+.registration__input:last-of-type {
+  margin: 0;
+}

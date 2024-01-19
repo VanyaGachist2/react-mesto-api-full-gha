@@ -1,0 +1,16 @@
+.element__button {
+  background-image: url("../../../images/Vector__3.svg");
+  width: 22px;
+  height: 19px;
+  background-size: 100% 100%;
+  background-color: transparent;
+  border: none;
+  transition: opacity .2s linear, transform .2s linear, background-image .2s ease;
+}
+
+
+.element__button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+  transform: scale(1.1);
+}

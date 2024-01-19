@@ -1,0 +1,8 @@
+.registration__subtitle_color_white {
+  color: white;
+  text-decoration: none;
+}
+
+.registration__subtitle_color_white:hover {
+  opacity: .6;
+}
