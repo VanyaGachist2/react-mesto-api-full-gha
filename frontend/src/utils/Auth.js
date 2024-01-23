@@ -7,26 +7,28 @@ class Auth {
     if(res.ok) {
       return res.json()
     }
-    throw new Error('ошибка!')
+    throw new Error('Ошибка ' + res.status);
   }
 
-  registration(email, password) {
+  registration({ email, password }) {
     return fetch(`${this._url}/signup`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({email, password})
+      credentials: 'include',
+      body: JSON.stringify({ email, password })
     })
       .then(this._ifcheck)
   }
 
-  Login(email, password) {
+  Login({ email, password }) {
     return fetch(`${this._url}/signin`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
+      credentials: 'include',
       body: JSON.stringify({email, password})
     })
       .then(this._ifcheck)
@@ -45,5 +47,5 @@ class Auth {
 }
 
 export const authApi = new Auth({
-  url: "https://auth.nomoreparties.co"
+  url: "http://localhost:3000"
 });
