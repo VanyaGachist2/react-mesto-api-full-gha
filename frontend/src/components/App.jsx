@@ -46,7 +46,8 @@ function App() {
 
   const handleRegistration = (email, password) => {
     setStatusTextForApi(true);
-    authApi.registration(email, password)
+    const data = { email, password };
+    authApi.registration(data)
       .then(() => {
         setStatusRegisterPopup(true);
         setTextStatusRegisterPopup('Вы успешно зарегистрировались!');
@@ -68,9 +69,10 @@ function App() {
 
   const handleLogin = (email, password) => {
     setStatusTextForApi(true);
-    authApi.Login(email, password)
+    const data = { email, password };
+    authApi.Login(data)
       .then((res) => {
-        if(res) {
+        if(res && res.token) {
           localStorage.setItem('jwt', res.token);
           setUserMail(email);
           setLoggedIn(true);
@@ -93,7 +95,7 @@ function App() {
       authApi.checkToken(jwt)
         .then((res) => {
           if(res) {
-            setUserMail(res.data.email);
+            setUserMail(res.email);
             setLoggedIn(true)
             navigate('/', {replace: true});
           }
@@ -123,7 +125,8 @@ function App() {
       });
     api.getCards()
       .then((data) => {
-        setCards(data)
+        const sortedData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setCards(sortedData);
       })
       .catch((err) => {
         console.log(err)
@@ -253,9 +256,9 @@ function App() {
     });
   }
 
-  function  handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === userData._id);
-    const checkLike = !isLiked ? api.addLiked(card._id) : api.deleteLike(card._id);
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i === userData._id);
+    const checkLike = isLiked ? api.deleteLike(card._id) : api.addLiked(card._id);
     checkLike
       .then((newCard) => {
         setCards((newCards) =>

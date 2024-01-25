@@ -1,7 +1,10 @@
+require('dotenv').config();
 const { PORT = 3000 } = process.env;
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const { requestLogger, errorLogger } = require('./middlewares/logger.js');
 const userRoutes = require('./routes/users');
 const cardRoutes = require('./routes/cards');
 const { login, createUser } = require('./controllers/users.js');
@@ -12,6 +15,13 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 
+const corsOption = {
+  origin: ['http://localhost:3000', 'https://praktikum.tk', 'http://praktikum.tk', 'http://localhost:3001'],
+  credentials: true,
+}
+
+app.use(cors(corsOption));
+
 app.use(express.json());
 
 app.use(cookieParser());
@@ -21,32 +31,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
-
-app.use((req, res, next) => {
-  const { origin } = req.headers;
-  const corsLinks = [
-    'http://localhost:3000',
-    'http://localhost:3001',
-    'https://praktikum.tk',
-    'http://praktikum.tk',
-  ]
-
-  if(corsLinks.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-  }
-  const { method } = req;
-  const requestHeaders = req.headers['access-control-request-headers'];
-
-  if(method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-    res.header('Access-Control-Allow-Methods', requestHeaders);
-
-    return res.end();
-  }
-  return next();
-})
+app.use(requestLogger);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -66,6 +51,7 @@ app.use(() => {
   throw new NotFoundError('Такой страницы нет');
 })
 
+app.use(errorLogger);
 app.use(errors());
 
 app.use((err, req, res, next) => {

@@ -10,26 +10,26 @@ class Auth {
     throw new Error('Ошибка ' + res.status);
   }
 
-  registration({ email, password }) {
+  registration(data) {
     return fetch(`${this._url}/signup`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
       credentials: 'include',
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify(data)
     })
       .then(this._ifcheck)
   }
 
-  Login({ email, password }) {
+  Login(data) {
     return fetch(`${this._url}/signin`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
       credentials: 'include',
-      body: JSON.stringify({email, password})
+      body: JSON.stringify(data)
     })
       .then(this._ifcheck)
   }
@@ -39,7 +39,7 @@ class Auth {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",
-        "Authorization" : `Bearer ${jwt}`
+        Authorization: `Bearer ${jwt}`
       }
     })
       .then(this._ifcheck);

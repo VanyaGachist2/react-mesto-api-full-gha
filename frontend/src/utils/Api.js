@@ -15,7 +15,8 @@ class Api {
   getInfo() {
     return fetch(this._url + '/users/me', {
       method: 'GET',
-      headers: this._headers
+      headers: this._headers,
+      credentials: 'include',
     })
     .then(this._ifcheck)
   }
@@ -25,7 +26,8 @@ class Api {
   getCards() {
     return fetch(this._url + '/cards', {
       method: 'GET',
-      headers: this._headers
+      headers: this._headers,
+      credentials: 'include',
     })
     .then(this._ifcheck)
   }
@@ -34,6 +36,7 @@ class Api {
   editProfile(name, about) {
     return fetch(this._url + '/users/me', {
       method: 'PATCH',
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: name,
@@ -47,6 +50,7 @@ class Api {
     return fetch(this._url + '/cards', {
       method: 'POST',
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify(data)
     })
     .then(this._ifcheck)
@@ -56,6 +60,7 @@ class Api {
   deleteCard(id) {
     return fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: this._headers
     })
     .then(this._ifcheck)
@@ -64,6 +69,7 @@ class Api {
   deleteLike(id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: this._headers
     })
     .then(this._ifcheck)
@@ -72,6 +78,7 @@ class Api {
   addLiked(id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'PUT',
+      credentials: 'include',
       headers: this._headers
     })
     .then(this._ifcheck)
@@ -81,6 +88,7 @@ class Api {
     return fetch(this._url + '/users/me/avatar', {
       method: 'PATCH',
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify({
         avatar: data.avatar
       })
@@ -92,6 +100,7 @@ class Api {
 export const api = new Api({
   url: 'http://localhost:3000',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${localStorage.getItem('jwt')}`
   }
 })
