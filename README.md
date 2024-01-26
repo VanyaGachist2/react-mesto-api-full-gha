@@ -11,7 +11,7 @@
 
 IP-адрес 158.160.98.186
 
-Frontend http://vanondanon.nomoredomainsmonster.ru
+Frontend https://vanondanon.nomoredomainsmonster.ru
 
-Backend http://api.vanondanon.nomoredomainsmonster.ru
+Backend https://api.vanondanon.nomoredomainsmonster.ru
 
