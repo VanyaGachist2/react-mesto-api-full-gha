@@ -1,7 +1,6 @@
 class Api {
-  constructor({ url, headers }) {
+  constructor({ url }) {
     this._url = url;
-    this._headers = headers;
   }
 
   _ifcheck(res) {
@@ -11,11 +10,18 @@ class Api {
     throw new Error('ошибка!')
   }
 
+  _getJwt() {
+    return {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    }
+  }
+
   // Загрузка информации о пользователе с сервера
   getInfo() {
     return fetch(this._url + '/users/me', {
       method: 'GET',
-      headers: this._headers,
+      headers: this._getJwt,
       credentials: 'include',
     })
     .then(this._ifcheck)
@@ -26,7 +32,7 @@ class Api {
   getCards() {
     return fetch(this._url + '/cards', {
       method: 'GET',
-      headers: this._headers,
+      headers: this._getJwt,
       credentials: 'include',
     })
     .then(this._ifcheck)
@@ -37,7 +43,7 @@ class Api {
     return fetch(this._url + '/users/me', {
       method: 'PATCH',
       credentials: 'include',
-      headers: this._headers,
+      headers: this._getJwt,
       body: JSON.stringify({
         name: name,
         about: about
@@ -49,7 +55,7 @@ class Api {
   addCard(data) {
     return fetch(this._url + '/cards', {
       method: 'POST',
-      headers: this._headers,
+      headers: this._getJwt,
       credentials: 'include',
       body: JSON.stringify(data)
     })
@@ -61,7 +67,7 @@ class Api {
     return fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
       credentials: 'include',
-      headers: this._headers
+      headers: this._getJwt
     })
     .then(this._ifcheck)
   }
@@ -70,7 +76,7 @@ class Api {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'DELETE',
       credentials: 'include',
-      headers: this._headers
+      headers: this._getJwt
     })
     .then(this._ifcheck)
   }
@@ -79,7 +85,7 @@ class Api {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'PUT',
       credentials: 'include',
-      headers: this._headers
+      headers: this._getJwt
     })
     .then(this._ifcheck)
   }
@@ -99,8 +105,4 @@ class Api {
 
 export const api = new Api({
   url: 'https://api.vanondanon.nomoredomainsmonster.ru',
-  headers: {
-    'Content-Type': 'application/json',
-    authorization: `Bearer ${localStorage.getItem('jwt')}`
-  }
 })
