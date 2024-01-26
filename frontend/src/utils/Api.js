@@ -21,7 +21,7 @@ class Api {
   getInfo() {
     return fetch(this._url + '/users/me', {
       method: 'GET',
-      headers: this._getHeaders,
+      headers: this._getHeaders(),
       credentials: 'include',
     })
     .then(this._ifcheck)
