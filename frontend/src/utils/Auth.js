@@ -47,5 +47,5 @@ class Auth {
 }
 
 export const authApi = new Auth({
-  url: "http://api.vanondanon.nomoredomainsmonster.ru"
+  url: "https://api.vanondanon.nomoredomainsmonster.ru"
 });
