@@ -32,7 +32,7 @@ class Api {
   getCards() {
     return fetch(this._url + '/cards', {
       method: 'GET',
-      headers: this._getHeaders,
+      headers: this._getHeaders(),
       credentials: 'include',
     })
     .then(this._ifcheck)
@@ -43,7 +43,7 @@ class Api {
     return fetch(this._url + '/users/me', {
       method: 'PATCH',
       credentials: 'include',
-      headers: this._getHeaders,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: name,
         about: about
@@ -55,7 +55,7 @@ class Api {
   addCard(data) {
     return fetch(this._url + '/cards', {
       method: 'POST',
-      headers: this._getHeaders,
+      headers: this._getHeaders(),
       credentials: 'include',
       body: JSON.stringify(data)
     })
@@ -67,7 +67,7 @@ class Api {
     return fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
       credentials: 'include',
-      headers: this._getHeaders
+      headers: this._getHeaders()
     })
     .then(this._ifcheck)
   }
@@ -76,7 +76,7 @@ class Api {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'DELETE',
       credentials: 'include',
-      headers: this._getHeaders
+      headers: this._getHeaders()
     })
     .then(this._ifcheck)
   }
@@ -85,7 +85,7 @@ class Api {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'PUT',
       credentials: 'include',
-      headers: this._getHeaders
+      headers: this._getHeaders()
     })
     .then(this._ifcheck)
   }
@@ -93,7 +93,7 @@ class Api {
   changeAvatar(data) {
     return fetch(this._url + '/users/me/avatar', {
       method: 'PATCH',
-      headers: this._getHeaders,
+      headers: this._getHeaders(),
       credentials: 'include',
       body: JSON.stringify({
         avatar: data.avatar
