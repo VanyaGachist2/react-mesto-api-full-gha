@@ -59,11 +59,10 @@ app.use(errors());
 app.use((err, req, res, next) => {
   const { status = 500, message } = err;
   res.status(status).json({
-    message: status === 500 ? 'Ошибка сервера' : message
+    message: status === 500 ? 'Ошибка сервера' : message,
   });
   next();
 })
-
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
