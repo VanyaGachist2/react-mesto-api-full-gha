@@ -16,7 +16,8 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 const corsOption = {
-  origin: ['http://localhost:3000', 'https://praktikum.tk', 'http://praktikum.tk', 'http://localhost:3001'],
+  origin: ['http://localhost:3000', 'https://praktikum.tk', 'http://praktikum.tk', 'http://localhost:3001', 
+  'https://vanondanon.nomoredomainsmonster.ru', 'http://vanondanon.nomoredomainsmonster.ru'],
   credentials: true,
 }
 

@@ -98,7 +98,7 @@ class Api {
 }
 
 export const api = new Api({
-  url: 'http://localhost:3000',
+  url: 'http://api.vanondanon.nomoredomainsmonster.ru',
   headers: {
     'Content-Type': 'application/json',
     authorization: `Bearer ${localStorage.getItem('jwt')}`

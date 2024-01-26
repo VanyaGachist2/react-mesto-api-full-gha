@@ -47,5 +47,5 @@ class Auth {
 }
 
 export const authApi = new Auth({
-  url: "http://localhost:3000"
+  url: "http://api.vanondanon.nomoredomainsmonster.ru"
 });
