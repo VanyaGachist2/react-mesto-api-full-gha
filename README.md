@@ -5,13 +5,13 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: https://github.com/VanyaGachist2/react-mesto-api-full-gha/tree/main
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.98.186
 
-Frontend https://...
+Frontend http://vanondanon.nomoredomainsmonster.ru
 
-Backend https://...
+Backend http://api.vanondanon.nomoredomainsmonster.ru
 
