@@ -76,6 +76,10 @@ function App() {
           localStorage.setItem('jwt', res.token);
           setUserMail(email);
           setLoggedIn(true);
+          api.getInfo()
+            .then((data) => {
+              setUserData(data);
+            })
           navigate("/", {replace: true});
         }
       })
@@ -105,7 +109,7 @@ function App() {
 
   useEffect(() => {
     handleCheckToken();
-  }, []);
+  }, [loggedIn]);
 
 
   const handleExit = () => {
