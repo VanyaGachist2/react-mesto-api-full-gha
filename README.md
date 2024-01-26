@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес <158.160.98.186>
+IP-адрес 158.160.98.186
 
 Frontend https://vanondanon.nomoredomainsmonster.ru
 
