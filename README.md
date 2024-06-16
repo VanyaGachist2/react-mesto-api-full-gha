@@ -20,3 +20,10 @@ Frontend https://vanondanon.nomoredomainsmonster.ru
 
 Backend https://api.vanondanon.nomoredomainsmonster.ru
 
+
+## Установка
+- клонировать проект `git clone git@github.com:VanyaGachist2/react-mesto-api-full-gha.git`
+- установка зависимостей на `backend` и `frontend` с помощью `npm i`
+- если пользоваться локальным беком то в папке `frontend/src/utils/Api.js` и `frontend/src/utils/Auth.js`, заменить `url: 'https://api.vanondanon.nomoredomainsmonster.ru'` на `url: http://localhost:3000`
+- запустить с помощью `npm run start` сначала backend потом frontend
+
